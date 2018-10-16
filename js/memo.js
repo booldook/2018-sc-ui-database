@@ -16,6 +16,30 @@ var googleAuth = new firebase.auth.GoogleAuthProvider();
 var ref;
 var user;
 
+/***** 전역함수 선언 ******/
+function initData() {
+	$(".lists").empty();
+	ref = db.ref("root/memos/"+user.uid);
+	ref.on("child_added", addData);
+	ref.on("child_changed", chgData);
+}
+function addData(data) {
+	var key = data.key;
+	var memo = data.val();
+	var title = memo.title;
+	var content = memo.content;
+	var wdate = memo.wdate;
+	var html = '<li class="list">';
+	html += '<p>'+title+'</p>';
+	html += '<div>'+wdate+'</div>';
+	html += '<span class="fa fa-trash bt_del"></span>';
+	html += '</li>';
+	$(".lists").append(html);
+}
+function chgData() {
+
+}
+
 /***** 이벤트 선언 ******/
 $("#bt_login_google").click(function(){
 	auth.signInWithPopup(googleAuth);
@@ -40,6 +64,8 @@ $("#bt_save").click(function(){
 			content: content,
 			wdate: new Date().getTime()
 		}).key;
+		$("#content").val('');
+		initData();
 	}
 });
 /***** 콜백 선언 ******/
@@ -58,3 +84,16 @@ auth.onAuthStateChanged(function(result){
 		$(".status").empty();
 	}
 });
+
+
+/***** 참조사항 ******/
+$("#bt").click(function(){
+
+});
+$("#bt").on("click", function(){
+
+});
+$("#bt").on("click", clickFn);
+function clickFn() {
+	
+}
