@@ -18,7 +18,7 @@
 <body>
 	<!--  HTML 본문 -->
 	<div class="wrap">
-		<div class="header">
+		<div class="header clear">
 			<div class="header_bar"><span class="fa fa-bars"></span></div>
 			<div class="header_tit">간편메모장</div>
 			<div class="header_bts">
@@ -26,19 +26,21 @@
 				<button id="bt_logout" class="w3-button w3-black">로그아웃</button>
 			</div>
 		</div>
-		<ul class="section">
+		<div class="section clear">
 			<ul class="lists">
 				<li class="list">
-					메모입니다.
+					<p>메모입니다.</p>
+					<div>2018-10-16 15:10:10</div>
+					<button class="w3-indigo w3-button w3-small bt_del">삭제</button>
 				</li>
 			</ul>
 			<div class="cont">
 				<textarea id="content" class="content"></textarea>
 			</div>
-	</div>
-	<div class="footer">
-		Copyright ⓒbooldook@gmail.com Allright reserved.
-	</div>
+		</div>
+		<div class="footer">
+			Copyright ⓒbooldook@gmail.com Allright reserved.
+		</div>
 	</div>
 
 
