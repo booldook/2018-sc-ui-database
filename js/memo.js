@@ -55,6 +55,16 @@ function timeConverter(ts){
 	var str = String(year).substr(2)+"년 "+month+" "+date+"일 "+amPm(addZero(hour))+"시 "+addZero(min)+"분 "+addZero(sec) +"초";
 	return str;
 }
+function addZero(n) {
+	if(n<10) return "0"+n;
+	else return n;
+}
+
+function amPm(h) {
+	if(h<12) return "오전 "+h;
+	else if(h>12) return "오후 "+(h-12);
+	else return "오후 12";
+}
 /***** 이벤트 선언 ******/
 $("#bt_login_google").click(function(){
 	auth.signInWithPopup(googleAuth);
