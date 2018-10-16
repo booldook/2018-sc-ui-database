@@ -13,6 +13,8 @@ firebase.initializeApp(config);
 var auth = firebase.auth();
 var db = firebase.database();
 var googleAuth = new firebase.auth.GoogleAuthProvider();
+var ref;
+var user;
 
 /***** 이벤트 선언 ******/
 $("#bt_login_google").click(function(){
@@ -22,9 +24,27 @@ $("#bt_login_google").click(function(){
 $("#bt_logout").click(function(){
 	auth.signOut();
 });
+$("#bt_save").click(function(){
+	var title;
+	var content;
+	content = $("#content").val();
+	if(content == "") {
+		alert("내용을 입력하세요~");
+		$("#content").focus();
+	}
+	else {
+		title = content.substr(0, 10);
+		ref = db.ref("root/memos/"+user.uid);
+		ref.push({
+			title: title,
+			content: content,
+			wdate: new Date().getTime()
+		}).key;
+	}
+});
 /***** 콜백 선언 ******/
 auth.onAuthStateChanged(function(result){
-	console.log(result)
+	user = result;
 	if(result) {
 		$("#bt_login_google").hide();
 		$("#bt_logout").show();

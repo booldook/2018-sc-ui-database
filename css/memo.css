@@ -8,7 +8,7 @@
 .lists {width:35%; height:100%; float:left; background-color:rgb(53, 142, 214)}
 .list {width:100%; padding:0.5em; border-bottom:1px solid rgb(7, 58, 134); position:relative; background:#f1f1f1;}
 .list > p {font-size:1.25em; font-weight:bold;}
-.list > .bt_del {position:absolute; bottom:0.5em; right:0.5em;}
+.list > .bt_del {position:absolute; bottom:0.3em; right:0.3em; font-size:1.25em; color:#000; cursor:pointer;}
 .cont {width:65%; height:100%; float:right; border-left:1px solid #ccc; padding:2%;}
 .content {width:100%; height:85%; border:4px solid #ccc; font-size:1.5em;}
 .footer {width:100%; height:60px; border-top:4px solid #ccc; color:#f1f1f1; 
