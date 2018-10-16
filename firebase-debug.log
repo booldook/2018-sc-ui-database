@@ -1,0 +1,24 @@
+[debug] [2018-10-10T05:59:44.591Z] ----------------------------------------------------------------------
+[debug] [2018-10-10T05:59:44.591Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Administrator\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase serve
+[debug] [2018-10-10T05:59:44.591Z] CLI Version:   4.2.1
+[debug] [2018-10-10T05:59:44.591Z] Platform:      win32
+[debug] [2018-10-10T05:59:44.591Z] Node Version:  v8.12.0
+[debug] [2018-10-10T05:59:44.591Z] Time:          Wed Oct 10 2018 14:59:44 GMT+0900 (대한민국 표준시)
+[debug] [2018-10-10T05:59:44.591Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-10-10T05:59:44.648Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-10-10T05:59:44.648Z] > authorizing via signed-in user
+[debug] [2018-10-10T05:59:44.648Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/booldook-db1  
+ 
+[debug] [2018-10-10T05:59:45.851Z] <<< HTTP RESPONSE 200
+[debug] [2018-10-10T05:59:45.851Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/booldook-db1  
+ 
+[debug] [2018-10-10T05:59:47.244Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from 'D:\fbroot\db1'...
+[info] 
+[debug] [2018-10-10T05:59:47.251Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/310840275351/clients/_:getWebAppConfig  
+ 
+[debug] [2018-10-10T05:59:47.874Z] <<< HTTP RESPONSE 200
+[info] i  hosting[booldook-db1]: Serving hosting files from: public
+[info] +  hosting[booldook-db1]: Local server: http://localhost:5000

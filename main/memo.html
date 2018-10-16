@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>간편 메모장</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="../css/base.css">
+	<link rel="stylesheet" href="../css/memo.css">
+	<script src="https://www.gstatic.com/firebasejs/5.5.4/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.5.4/firebase-auth.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.5.4/firebase-database.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+
+<body>
+	<!--  HTML 본문 -->
+	<div class="wrap">
+		<div class="header">
+			<div class="header_bar"><span class="fa fa-bars"></span></div>
+			<div class="header_tit">간편메모장</div>
+			<div class="header_bts">
+				<button id="bt_login_google" class="w3-button w3-red">구글 로그인</button>
+				<button id="bt_logout" class="w3-button w3-black">로그아웃</button>
+			</div>
+		</div>
+		<ul class="section">
+			<ul class="lists">
+				<li class="list">
+					메모입니다.
+				</li>
+			</ul>
+			<div class="cont">
+				<textarea id="content" class="content"></textarea>
+			</div>
+	</div>
+	<div class="footer">
+		Copyright ⓒbooldook@gmail.com Allright reserved.
+	</div>
+	</div>
+
+
+	<!-- Javascript -->
+	<script src="https://www.gstatic.com/firebasejs/5.5.4/firebase.js"></script>
+	<script src="../js/memo.js"></script>
+</body>
+
+</html>
