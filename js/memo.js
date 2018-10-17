@@ -32,7 +32,7 @@ function initBt(mode) {
 		$("#bt_save").show();
 		$("#bt_update").hide();
 		$("#bt_cancel").show();
-		$("#content").focus();
+		$("#content:not(:focus)").focus();
 	}
 	else if(mode == 'R') {
 		$("#bt_new").show();
@@ -69,14 +69,19 @@ function revData(data) {
 	//initData();
 }
 function upData(obj) {
-	console.log("수정");
+	var id = $(obj).attr("id");
+	ref = db.ref("root/memos/"+user.uid+"/"+id);
+	ref.once("value").then(function(data){
+		$("#content").val(data.val().content);
+		initBt('U');
+	});
 }
 function delData(obj) {
 	window.event.stopPropagation();
-	//var key = $(obj).parent().attr("id");
 	var id = obj.parentNode.id;
 	if(confirm("정말로 삭제하시겠습니까?")){
 		db.ref("root/memos/"+user.uid+"/"+id).remove();
+		initBt('R');
 		//$(obj).parent().remove();
 	}
 }
