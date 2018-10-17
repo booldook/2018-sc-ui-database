@@ -49,20 +49,21 @@ function initBt(mode) {
 	}
 }
 function addData(data) {
-	var key = data.key;
+	var id = data.key;
 	var memo = data.val();
 	var title = memo.title;
 	var content = memo.content;
 	var wdate = memo.wdate;
-	var html = '<li class="list" id="'+key+'" onclick="upData(this);">';
+	var html = '<li class="list" id="'+id+'" onclick="upData(this);">';
 	html += '<p>'+title+'</p>';
 	html += '<div>'+timeConverter(wdate)+'</div>';
 	html += '<span class="fa fa-trash bt_del" onclick="delData(this);"></span>';
 	html += '</li>';
 	$(".lists").prepend(html);
 }
-function chgData() {
-
+function chgData(data) {
+	$("#"+data.key).find('p').html(data.val().title);
+	$("#"+data.key).find('div').html(timeConverter(data.val().wdate));
 }
 function revData(data) {
 	$("#"+data.key).remove();
@@ -70,6 +71,7 @@ function revData(data) {
 }
 function upData(obj) {
 	var id = $(obj).attr("id");
+	key = id;
 	ref = db.ref("root/memos/"+user.uid+"/"+id);
 	ref.once("value").then(function(data){
 		$("#content").val(data.val().content);
@@ -94,6 +96,7 @@ $("#bt_logout").click(function(){
 	auth.signOut();
 });
 $("#bt_save").click(function(){
+	key = '';
 	var title;
 	var content;
 	content = $("#content").val();
@@ -114,13 +117,36 @@ $("#bt_save").click(function(){
 	}
 });
 $("#bt_new").click(function(){
+	key = '';
 	initBt('C');
 });
 $("#bt_cancel").click(function(){
+	key = '';
 	initBt('R');
 });
 $("#content").focus(function(){
-	initBt('C');
+	if(key != '') initBt('U');
+	else initBt('C');
+});
+$("#bt_update").click(function(){
+	var title;
+	var content;
+	content = $("#content").val();
+	if(content == "") {
+		alert("내용을 입력하세요~");
+		$("#content").focus();
+	}
+	else {
+		title = content.substr(0, 10);
+		ref = db.ref("root/memos/"+user.uid+"/"+key);
+		ref.update({
+			title: title,
+			content: content,
+			wdate: new Date().getTime()
+		});
+		key = '';
+		initBt('R');
+	}
 });
 /***** 콜백 선언 ******/
 auth.onAuthStateChanged(function(result){
