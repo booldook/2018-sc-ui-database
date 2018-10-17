@@ -15,7 +15,7 @@ var db = firebase.database();
 var googleAuth = new firebase.auth.GoogleAuthProvider();
 var ref;
 var user;
-var key;
+var key = '';
 //CRUD(Create, Read, Update, Delete)
 /***** 전역함수 선언 ******/
 function initData() {
