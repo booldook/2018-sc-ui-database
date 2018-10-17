@@ -16,14 +16,37 @@ var googleAuth = new firebase.auth.GoogleAuthProvider();
 var ref;
 var user;
 var key;
-
+//CRUD(Create, Read, Update, Delete)
 /***** 전역함수 선언 ******/
 function initData() {
 	$(".lists").empty();
+	initBt('R');
 	ref = db.ref("root/memos/"+user.uid);
 	ref.on("child_added", addData);
 	ref.on("child_removed", revData);
 	ref.on("child_changed", chgData);
+}
+function initBt(mode) {
+	if(mode == 'C') {
+		$("#bt_new").hide();
+		$("#bt_save").show();
+		$("#bt_update").hide();
+		$("#bt_cancel").show();
+		$("#content").focus();
+	}
+	else if(mode == 'R') {
+		$("#bt_new").show();
+		$("#bt_save").hide();
+		$("#bt_update").hide();
+		$("#bt_cancel").hide();
+		$("#content").val('').blur();
+	}
+	else if(mode == 'U') {
+		$("#bt_new").hide();
+		$("#bt_save").hide();
+		$("#bt_update").show();
+		$("#bt_cancel").show();
+	}
 }
 function addData(data) {
 	var key = data.key;
@@ -84,6 +107,15 @@ $("#bt_save").click(function(){
 		$("#content").val('');
 		initData();
 	}
+});
+$("#bt_new").click(function(){
+	initBt('C');
+});
+$("#bt_cancel").click(function(){
+	initBt('R');
+});
+$("#content").focus(function(){
+	initBt('C');
 });
 /***** 콜백 선언 ******/
 auth.onAuthStateChanged(function(result){
