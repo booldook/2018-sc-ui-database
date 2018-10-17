@@ -1,4 +1,4 @@
-/***** Firebase Init ******/
+/***** Firebase Initialize(초기화) ******/
 var config = {
 	apiKey: "AIzaSyDGfj5JyuPXXHoXyX48QJ5I_S0Hccy5LuM",
 	authDomain: "booldook-db1.firebaseapp.com",
@@ -22,7 +22,7 @@ function initData() {
 	ref = db.ref("root/memos/"+user.uid);
 	ref.on("child_added", addData);
 	ref.on("child_changed", chgData);
-	ref.on("child_remove", revData);
+	ref.on("child_removed", revData);
 }
 function addData(data) {
 	var key = data.key;
@@ -30,12 +30,12 @@ function addData(data) {
 	var title = memo.title;
 	var content = memo.content;
 	var wdate = memo.wdate;
-	var html = '<li class="list">';
+	var html = '<li class="list" id="'+key+'" onclick="upData(this);">';
 	html += '<p>'+title+'</p>';
-	html += '<div>'+wdate+'</div>';
-	html += '<span class="fa fa-trash bt_del"></span>';
+	html += '<div>'+timeConverter(wdate)+'</div>';
+	html += '<span class="fa fa-trash bt_del" onclick="delData(this);"></span>';
 	html += '</li>';
-	$(".lists").append(html);
+	$(".lists").prepend(html);
 }
 function chgData() {
 
@@ -43,28 +43,7 @@ function chgData() {
 function revData() {
 
 }
-function timeConverter(ts){
-	var a = new Date(ts);
-	var months = ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'];
-	var year = a.getFullYear();
-	var month = months[a.getMonth()];
-	var date = a.getDate();
-	var hour = a.getHours();
-	var min = a.getMinutes();
-	var sec = a.getSeconds();
-	var str = String(year).substr(2)+"년 "+month+" "+date+"일 "+amPm(addZero(hour))+"시 "+addZero(min)+"분 "+addZero(sec) +"초";
-	return str;
-}
-function addZero(n) {
-	if(n<10) return "0"+n;
-	else return n;
-}
 
-function amPm(h) {
-	if(h<12) return "오전 "+h;
-	else if(h>12) return "오후 "+(h-12);
-	else return "오후 12";
-}
 /***** 이벤트 선언 ******/
 $("#bt_login_google").click(function(){
 	auth.signInWithPopup(googleAuth);
@@ -99,19 +78,20 @@ auth.onAuthStateChanged(function(result){
 	if(result) {
 		$("#bt_login_google").hide();
 		$("#bt_logout").show();
-		$(".status").append('<p>'+result.email+'</p>');
-		$(".status").append('<p>'+result.displayName+'</p>');
-		$(".status").append('<p>'+result.uid+'</p>');
+		$(".tv_email").html(user.email);
+		initData();
 	}
 	else {
 		$("#bt_login_google").show();
 		$("#bt_logout").hide();
-		$(".status").empty();
+		$(".tv_email").html('');
+		$(".lists").empty();
 	}
 });
 
 
 /***** 참조사항 ******/
+/*
 $("#bt").click(function(){
 
 });
@@ -122,3 +102,35 @@ $("#bt").on("click", clickFn);
 function clickFn() {
 	
 }
+
+var option = {
+	url: "../json/test.json",
+	type: "get",
+	dataType: "json",
+	success: function(data) {
+
+	}
+}
+$.ajax(option);
+
+
+var abc = {
+	x: "10",
+	y: "20",
+	z: {
+
+	},
+	fn: function(){
+
+	}
+}
+console.log(abc.x);
+//Json은 자바스크립트 객체의 구조를 가지는 데이터 집합(통신을 위한 규칙에 맞는 데이터)
+var def = {
+	"x": "10",
+	"y": "20",
+	"z":{
+		"ab":"10"
+	}
+}
+*/

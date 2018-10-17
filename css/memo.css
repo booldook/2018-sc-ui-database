@@ -4,8 +4,10 @@
 .header_bar {float:left; line-height:76px; font-size:2em; padding:0 0.5em;}
 .header_tit {float:left; line-height:76px; font-size:2em;}
 .header_bts {float:right; padding:1.25em;}
+.tv_email {margin-right:1em; font-size:1.25em;}
 .section {width:100%; height:calc(100% - 140px);}
-.lists {width:35%; height:100%; float:left; background-color:rgb(53, 142, 214)}
+.lists {width:35%; height:100%; float:left; background-color:rgb(53, 142, 214); 
+	overflow-y:scroll;}
 .list {width:100%; padding:0.5em; border-bottom:1px solid rgb(7, 58, 134); position:relative; background:#f1f1f1;}
 .list > p {font-size:1.25em; font-weight:bold;}
 .list > .bt_del {position:absolute; bottom:0.3em; right:0.3em; font-size:1.25em; color:#000; cursor:pointer;}
