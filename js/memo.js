@@ -15,14 +15,15 @@ var db = firebase.database();
 var googleAuth = new firebase.auth.GoogleAuthProvider();
 var ref;
 var user;
+var key;
 
 /***** 전역함수 선언 ******/
 function initData() {
 	$(".lists").empty();
 	ref = db.ref("root/memos/"+user.uid);
 	ref.on("child_added", addData);
-	ref.on("child_changed", chgData);
 	ref.on("child_removed", revData);
+	ref.on("child_changed", chgData);
 }
 function addData(data) {
 	var key = data.key;
@@ -40,10 +41,22 @@ function addData(data) {
 function chgData() {
 
 }
-function revData() {
-
+function revData(data) {
+	$("#"+data.key).remove();
+	//initData();
 }
-
+function upData(obj) {
+	console.log("수정");
+}
+function delData(obj) {
+	window.event.stopPropagation();
+	//var key = $(obj).parent().attr("id");
+	var id = obj.parentNode.id;
+	if(confirm("정말로 삭제하시겠습니까?")){
+		db.ref("root/memos/"+user.uid+"/"+id).remove();
+		//$(obj).parent().remove();
+	}
+}
 /***** 이벤트 선언 ******/
 $("#bt_login_google").click(function(){
 	auth.signInWithPopup(googleAuth);

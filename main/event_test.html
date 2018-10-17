@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>이벤트 모형</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<style>
+		#wrap {width:100%; height:500px; border:10px solid #0ff; overflow-y:scroll;}
+		#box1 {width:800px; height:800px; border:10px solid #000; background-color:red;}
+		#box2 {width:500px; height:500px; border:10px solid #999; background-color:green;}
+		#box3 {width:300px; height:300px; border:10px solid #ccc; background-color:blue;}
+		#box4 {width:100px; height:100px; border:10px solid rgb(131, 131, 131); background-color:rgb(141, 8, 101);}
+	</style>
+</head>
+<body>
+	<div id="wrap" style>
+		<div id="box1">
+			<div id="box2">
+				<div id="box3">
+					<div id="box4" onclick="box4Click(this);"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+	function box4Click(obj) {
+		console.log(	$(obj).parent().attr("id")	);
+		console.log(	obj.parentNode.id	);
+		window.event.stopPropagation();
+	}
+	$("#box1").click(function(e){
+		console.log("빨강");
+	});
+	$("#box2").click(function(e){
+		console.log("녹색");
+		e.stopPropagation();
+	});
+	$("#box3").click(function(e){
+		console.log("파랑");
+		e.stopPropagation();
+	});
+	$("#wrap").scroll(function(e){
+		e.preventDefault();
+		e.stopPropagation();
+		console.log("스크롤!!!");
+	});
+	</script>
+</body>
+</html>
