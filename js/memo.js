@@ -325,9 +325,9 @@ var test = {
 	a: 100,
 	b: 200,
 	hap: function(a, b) {
-		console.log(a + b);
+		console.log(this.a + this.b);
 	}
 }
 console.log(this);
-test.hap(this.a, this.b);
+test.hap(10, 20);
 */

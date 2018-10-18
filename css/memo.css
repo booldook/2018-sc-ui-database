@@ -4,6 +4,8 @@
 .header_bar {float:left; line-height:76px; font-size:2em; padding:0 0.5em;}
 .header_tit {float:left; line-height:76px; font-size:2em;}
 #bt_new {line-height:1.0em;}
+#bt_logout > :first-child {display:inline-block;}
+#bt_logout > :last-child {display:none;}
 .header_bts {float:right; padding:1.25em;}
 .tv_email {margin-right:1em; font-size:1.25em;}
 .section {width:100%; height:calc(100% - 140px);}
@@ -24,4 +26,6 @@
 @media screen and (max-width:700px) {
 	.iv_user {display:none;}
 	.tv_email {display:none;}
+	#bt_logout > :first-child {display:none;}
+	#bt_logout > :last-child {display:inline-block;}
 }
