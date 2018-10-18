@@ -3,6 +3,7 @@
 	background-color:rgb(7, 58, 134); color:#fff;}
 .header_bar {float:left; line-height:76px; font-size:2em; padding:0 0.5em;}
 .header_tit {float:left; line-height:76px; font-size:2em;}
+#bt_new {line-height:1.0em;}
 .header_bts {float:right; padding:1.25em;}
 .tv_email {margin-right:1em; font-size:1.25em;}
 .section {width:100%; height:calc(100% - 140px);}
@@ -15,3 +16,12 @@
 .content {width:100%; height:85%; border:4px solid #ccc; font-size:1.5em;}
 .footer {width:100%; height:60px; border-top:4px solid #ccc; color:#f1f1f1; 
 	background-color:#111; text-align:center; line-height:60px; font-size:0.75rem;}
+
+@media screen and (max-width:900px) {
+	.lists {position:absolute; width:100%; display:none; height:calc(100% - 140px);}
+	.cont {width:100%;}
+}
+@media screen and (max-width:700px) {
+	.iv_user {display:none;}
+	.tv_email {display:none;}
+}
