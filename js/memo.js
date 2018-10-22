@@ -57,6 +57,7 @@ function initBt(mode) {
 			break;
 	}
 }
+/** **/
 function addData(data) {
 	var id = data.key;
 	var memo = data.val();
